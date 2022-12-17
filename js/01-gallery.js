@@ -54,11 +54,3 @@ function onGalleryContainerClik(event)
   });
 
 }
-
-
-
-
-
-
-
-4

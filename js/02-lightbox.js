@@ -10,7 +10,6 @@ const galleryMarkup = createGalleryPicturesMarkup(galleryItems);
 
 
 galleryContainer.insertAdjacentHTML('afterbegin',galleryMarkup )
-galleryContainer.addEventListener('click', onGalleryContainerClik)
 
 
 function createGalleryPicturesMarkup(galleryItems) {
@@ -19,19 +18,10 @@ function createGalleryPicturesMarkup(galleryItems) {
   <img class="gallery__image" src="${preview}" alt="${description}" />
 </a> `}).join('');
 }
-function onGalleryContainerClik(event)
-{
-    event.preventDefault();
 
-    const isGalleryEl = event.target.classList.contains('gallery__image');
 
-    if (!isGalleryEl) {
-        return;
-    }
-    const lightBoxOptions={captions: true,
+const lightBoxOptions={captions: true,
         captionsData: "alt",
         captionDelay: 250}
-    const lightBox = new SimpleLightbox('.gallery a', lightBoxOptions)
-   
-}
-
+    
+const lightBox = new SimpleLightbox('.gallery a', lightBoxOptions)

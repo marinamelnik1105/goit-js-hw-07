@@ -7,11 +7,7 @@ console.log(galleryItems);
 const galleryContainer = document.querySelector('.gallery');
 const galleryMarkup = createGalleryPicturesMarkup(galleryItems);
 
-
-
-
-
-galleryContainer.insertAdjacentHTML('afterbegin',galleryMarkup )
+galleryContainer.insertAdjacentHTML('afterbegin', galleryMarkup)
 
 galleryContainer.addEventListener('click', onGalleryContainerClik)
 
@@ -32,25 +28,39 @@ function createGalleryPicturesMarkup(galleryItems) {
 }
 function onGalleryContainerClik(event)
 {
-  event.preventDefault();
+  onLinkBan();
 
+  onClassCheck();
+
+  const instance = basicLightbox.create(`
+  <img src="${event.target.dataset.source}" width="800" heigth="600">
+  `, {
+    onShow: () =>{ document.addEventListener("keydown", onEscKeyPress);
+  },
+		onClose: () => { document.removeEventListener("keydown", onEscKeyPress);}
+	});
+  instance.show();
+
+
+}
+
+function onClassCheck(event)
+{
   const isGalleryEl = event.target.classList.contains('gallery__image');
 
   if (!isGalleryEl) {
     return;
 
   }
+}
 
-  const instance = basicLightbox.create(`
-  <img src="${event.target.dataset.source}" width="800" heigth="600">
-  `);
-  instance.show();
+ function onLinkBan(event) {
+    event.preventDefault();
+  }
 
-  galleryContainer.addEventListener("keydown", (event) =>
+ function onEscKeyPress(event) 
   {
     if (event.code === "Escape") {
       instance.close();
     }
-  });
-
-}
+  }

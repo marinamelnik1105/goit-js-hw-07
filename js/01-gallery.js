@@ -28,9 +28,9 @@ function createGalleryPicturesMarkup(galleryItems) {
 }
 function onGalleryContainerClik(event)
 {
-  onLinkBan();
+  onLinkBan(event);
 
-  onClassCheck();
+  onClassCheck(event);
 
   const instance = basicLightbox.create(`
   <img src="${event.target.dataset.source}" width="800" heigth="600">
